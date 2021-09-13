@@ -1,6 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Container, Paper, Grid, Typography} from '@material-ui/core';
+import {Container, Paper, Grid} from '@material-ui/core';
+
+import Devices from '../components/devices/devices.component';
+import BottomNav from '../components/bottom-nav/bottom-nav.component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,11 +15,12 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 0 28px rgb(0 0 0 / 8%)',
   },
   container: {
+    padding: 0,
     display: 'flex',
     height: '100vh',
-    // margin: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'tomato'
   },
 }));
 
@@ -25,11 +29,14 @@ export default function Profile() {
 
   return (
     <Container className={classes.container}>
-      <Grid container spacing={3} alignItems='center'>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-              <Typography>Profile page</Typography>
+            <Devices />
           </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <BottomNav />
         </Grid>
       </Grid>
     </Container>

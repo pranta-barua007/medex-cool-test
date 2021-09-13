@@ -13,3 +13,9 @@ export async function httpLogin(email, password) {
     );
     return await response.text();
 };
+
+//Devices
+export async function httpGetDevices() {
+    const response = await fetch(`${API_URL}/devices`);
+    return await response.json();
+};

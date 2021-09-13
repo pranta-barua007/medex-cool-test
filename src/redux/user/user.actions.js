@@ -38,3 +38,32 @@ export const requestLogin = (email, password) => async (dispatch) => {
         dispatch(logInFailure(err.message))
     }
 };
+
+export const logOutStart = () => (
+    {
+        type: UserActionTypes.LOG_OUT_START,
+    }
+);
+
+export const logOutSuccess = () => (
+    {
+        type: UserActionTypes.LOG_OUT_SUCCESS,
+        payload: null
+    }
+);
+
+export const logOutFailure = error => (
+    {
+        type: UserActionTypes.LOG_OUT_FAILURE,
+        payload: error
+    }
+);
+
+export const requestLogOut = () => (dispatch) => {
+    dispatch(logOutStart());
+    try {
+        dispatch(logOutSuccess());
+    } catch (error) {
+        dispatch(logOutFailure(error))
+    }
+};
