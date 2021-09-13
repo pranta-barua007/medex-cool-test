@@ -32,10 +32,10 @@ export const requestLogin = (email, password) => async (dispatch) => {
         if (data && data === errMessage) {
             throw new Error(errMessage);
         }
-        window.localStorage.setItem('token', data)
-        dispatch(logInSuccess(jwt_decode(data)))
+        dispatch(logInSuccess(jwt_decode(data)));
+        window.localStorage.setItem('token', data);
     }catch(err) {
-        dispatch(logInFailure(err.message))
+        dispatch(logInFailure(err.message));
     }
 };
 
@@ -63,7 +63,19 @@ export const requestLogOut = () => (dispatch) => {
     dispatch(logOutStart());
     try {
         dispatch(logOutSuccess());
+        window.localStorage.clear();
     } catch (error) {
-        dispatch(logOutFailure(error))
+        dispatch(logOutFailure(error));
+    }
+};
+
+export const checkUserSession = () => (dispatch) => {
+    const token = window.localStorage.getItem('token');
+    if(!token) return;
+
+    try {
+        dispatch(logInSuccess(jwt_decode(token)));
+    }catch (err) {
+        dispatch(logInFailure(err.message));
     }
 };

@@ -16,23 +16,23 @@ function Devices({ devicesData, onDevicesMount }) {
   }, [onDevicesMount]);
 
   return (
-    <Grid container spacing={0} justifyContent='center' alignItems='center'>
-        <Grid item xs={12}>
-            <Typography variant='h1'>{devicesData.length}</Typography>
-        </Grid>
-        <Grid item xs={12}>
-            <Typography variant='subtitle1'> DEVICES</Typography>
-        </Grid>
-        <Grid item xs={12}>
-            <Typography variant='subtitle1'> ONLINE</Typography>
-        </Grid>
+    <Grid container justifyContent='center' alignItems='center'>
+      <Grid item xs={12}>
+        <Typography variant='h1'>{devicesData.length}</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant='subtitle1'> DEVICES</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant='subtitle1'> ONLINE</Typography>
+      </Grid>
     </Grid>
   );
 };
 
 const mapStateToProps = createStructuredSelector(
   {
-    devicesData: selectDevicesData
+    devicesData: selectDevicesData,
   }
 );
 

@@ -1,17 +1,18 @@
 import React, {useEffect} from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { checkUserSession } from './redux/user/user.actions';
+import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 import Login from './pages/login.page';
 import Profile from './pages/profile.page';
 
-function Routes({ currentUser }) {
-  useEffect(() => { //only for testing purpose till now
-    console.log('Rerendered in routes')
-  },[currentUser])
+function Routes({ currentUser, onRoutesMountCheckUserSession }) {
+  useEffect(() => {
+    onRoutesMountCheckUserSession();
+  }, [onRoutesMountCheckUserSession]);
 
   return (
     <Switch>
@@ -39,4 +40,10 @@ const mapStateToProps = createStructuredSelector(
   }
 );
 
-export default connect(mapStateToProps, null)(Routes);
+const mapDispatchToProps = (dispatch) => (
+  {
+    onRoutesMountCheckUserSession: () => dispatch(checkUserSession())
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);
