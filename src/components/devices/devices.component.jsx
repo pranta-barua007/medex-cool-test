@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Avatar } from '@material-ui/core';
 
 import { connect } from 'react-redux';
 import { requestDevices } from '../../redux/devices/devices.actions';
@@ -17,6 +17,13 @@ function Devices({ devicesData, onDevicesMount }) {
 
   return (
     <Grid container justifyContent='center' alignItems='center'>
+      <Grid item xs={12} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        {
+          devicesData
+            .filter((device, idx) => idx < Math.floor(devicesData.length/2))
+            .map(device => <Avatar key={device.id} style={{backgroundColor: 'white', padding: '10px', margin: '4px', color: 'tomato'}}>{device.name[0]}</Avatar>)
+        }
+      </Grid>
       <Grid item xs={12}>
         <Typography variant='h1'>{devicesData.length}</Typography>
       </Grid>
@@ -25,6 +32,13 @@ function Devices({ devicesData, onDevicesMount }) {
       </Grid>
       <Grid item xs={12}>
         <Typography variant='subtitle1'> ONLINE</Typography>
+      </Grid>
+      <Grid item xs={12} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        {
+          devicesData
+            .filter((device, idx) => idx >= Math.floor(devicesData.length/2))
+            .map(device => <Avatar key={device.id} style={{backgroundColor: 'white', padding: '10px', margin: '4px', color: 'tomato'}}>{device.name[0]}</Avatar>)
+        }
       </Grid>
     </Grid>
   );

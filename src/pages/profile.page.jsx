@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(0),
     textAlign: 'center',
-    boxShadow: '0 0 28px rgb(0 0 0 / 8%)',
+    boxShadow: '0 0 28px rgb(0 0 0 / 4%)',
     background: 'none',
     fontFamily: 'Inter',
     color: 'white'
