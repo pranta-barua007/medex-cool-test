@@ -26,7 +26,7 @@ export const requestDevices = () => async (dispatch) => {
     try {
         const callApi = httpGetDevices();
         const data = await callApi;
-        dispatch(fetchDevicesSuccess(data.devices)); 
+        dispatch(fetchDevicesSuccess(data['devices'])); 
     }catch(err) {
         dispatch(fetchDevicesFailure(err.message));
     }
