@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
 import { requestLogOut } from '../../redux/user/user.actions';
+import { requestNotify } from '../../redux/notify/notify.actions';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -21,12 +22,12 @@ const useStyles = makeStyles(() => ({
     },
   }));
 
-function BottomNav({ logOutStart }) {
+function BottomNav({ logOutStart, notifyStart }) {
   const classes = useStyles();
 
   return (
     <Container className={classes.container}>
-      <Button variant='contained' style={{marginRight: '4px'}}>
+      <Button variant='contained' onClick={() => notifyStart()} style={{marginRight: '4px'}}>
         Notify
       </Button>
       <Button variant='contained' color='primary' onClick={() => logOutStart()} style={{marginLeft: '4px', backgroundColor: '#292d31', color: 'white'}}>
@@ -38,7 +39,8 @@ function BottomNav({ logOutStart }) {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    logOutStart: () => dispatch(requestLogOut())
+    logOutStart: () => dispatch(requestLogOut()),
+    notifyStart: () => dispatch(requestNotify())
   }
 );
 

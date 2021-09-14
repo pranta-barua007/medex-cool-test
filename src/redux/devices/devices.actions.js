@@ -31,3 +31,5 @@ export const requestDevices = () => async (dispatch) => {
         dispatch(fetchDevicesFailure(err.message));
     }
 };
+
+

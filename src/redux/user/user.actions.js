@@ -26,11 +26,10 @@ export const logInFailure = error => (
 export const requestLogin = (email, password) => async (dispatch) => {
     dispatch(logInStart());
     try {
-        const callAPI = httpLogin(email, password);
-        const data = await callAPI;
-        const errMessage = 'Invalid email and password combination';
-        if (data && data === errMessage) {
-            throw new Error(errMessage);
+        const callAPI = await httpLogin(email, password);
+        const data = await callAPI.text();
+        if (callAPI.status === 401) {
+            throw new Error(data);
         }
         dispatch(logInSuccess(jwt_decode(data)));
         window.localStorage.setItem('token', data);
@@ -65,7 +64,7 @@ export const requestLogOut = () => (dispatch) => {
         dispatch(logOutSuccess());
         window.localStorage.clear();
     } catch (error) {
-        dispatch(logOutFailure(error));
+        dispatch(logOutFailure(error.message));
     }
 };
 
@@ -79,3 +78,4 @@ export const checkUserSession = () => (dispatch) => {
         dispatch(logInFailure(err.message));
     }
 };
+

@@ -11,11 +11,31 @@ export async function httpLogin(email, password) {
             })
         }
     );
-    return await response.text();
+    return response;
 };
 
 //Devices
 export async function httpGetDevices() {
     const response = await fetch(`${API_URL}/devices`);
     return await response.json();
+};
+
+//Notify
+export async function httpPostNotify(notifyData) {
+    const {name, email, repoUrl, message, token} = notifyData;
+    const response = await fetch(`${API_URL}/notify`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            repoUrl: repoUrl,
+            message: message
+        })
+    });
+
+    return response;
 };
