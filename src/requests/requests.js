@@ -22,12 +22,13 @@ export async function httpGetDevices() {
 
 //Notify
 export async function httpPostNotify(notifyData) {
-    const {name, email, repoUrl, message, token} = notifyData;
+    const token = window.localStorage.getItem('token');
+    const {name, email, repoUrl, message} = notifyData;
     const response = await fetch(`${API_URL}/notify`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
             name: name,
