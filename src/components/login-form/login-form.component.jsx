@@ -30,8 +30,7 @@ const LoginForm = ({ onSubmitSignin, userIsPending, errorLoading }) => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        const result =  onSubmitSignin(email, password);
-        console.log(result);
+        onSubmitSignin(email, password);
         clearForm();
     };
 

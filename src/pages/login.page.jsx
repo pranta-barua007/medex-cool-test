@@ -27,7 +27,7 @@ export default function Login() {
   return (
     <Container className={classes.container}>
       <Grid container spacing={3} justifyContent='center' alignItems='center'>
-        <Grid item xs={4}>
+        <Grid item xs={12} lg={4} md={6}>
           <Paper className={classes.paper}>
               <LoginForm />
           </Paper>
