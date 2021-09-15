@@ -18,18 +18,19 @@ function Routes({ currentUser, onRoutesMountCheckUserSession }) {
     <Switch>
       <Route exact path='/' render={() => 
         currentUser ? (
-          <Redirect to={`profile/${currentUser.now}`} /> //tere is no 'id' in response from server, using 'now' instead
+          <Redirect to={`profile/${currentUser.now}`} /> //there is no 'id' in response from server, using 'now' instead
         ) : (
           <Login />
         )
       } />
-      <Route path='/profile/:id' render={() => 
+      <Route exact path='/profile/:id' render={() => 
         currentUser ? (
           <Profile />
         ) : (
           <Redirect to='/' />
         )
       } />
+      <Redirect to='/'/>
     </Switch>
   );
 }
